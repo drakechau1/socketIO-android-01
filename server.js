@@ -8,8 +8,11 @@ var http = require("http").createServer(app).listen(process.env.PORT || 3000); /
 var io = require("socket.io")(http);
 var fs = require("fs");
 
-io.sockets.on("connection", function(){
+io.sockets.on("connection", function(socket){
     console.log("connected");
+    socket.on("android-send-data", function(data){
+        socket.broadcast.emit("server-send-data", "led A turn on : ");
+    });
 });
 
 app.get("/", function(req, res){
