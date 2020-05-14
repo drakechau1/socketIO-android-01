@@ -9,7 +9,7 @@ var io = require("socket.io")(http);
 var fs = require("fs");
 
 io.sockets.on("connection", function(socket){
-    console.log("connected");
+    socket.broadcast.emit("server-send-data", "Android connect success : "); // thong bao ket noi thanh cong
     socket.on("android-send-data", function(data){
         socket.broadcast.emit("server-send-data", "led A turn on : ");
     });
